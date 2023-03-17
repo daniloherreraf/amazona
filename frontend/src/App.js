@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div className='d-flex flex-column site-container' >
         <header>
-          <Navbar bg="primary" variant="dark">
+          <Navbar bg="dark" variant="dark">
             <Container>
               <LinkContainer to="/">
                 <Navbar.Brand>amazona</Navbar.Brand>
