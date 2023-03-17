@@ -45,7 +45,7 @@ const data = {
       image:
         '/images/p4.jpg',
       price: 80,
-      countInStock: 14,
+      countInStock: 0,
       brand: 'Adidas',
       rating: 4.5,
       numReviews: 10,
