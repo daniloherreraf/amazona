@@ -65,3 +65,7 @@ N. Complete Add To Cart
    ñ.1 create 2 columns
    ñ.2 display items list
    ñ.3 create action column
+O. Complete Card Screen
+   o.1 click handler for inc/dec item
+   o.2 click handler for remove item
+   o.3 click handler for checkout
