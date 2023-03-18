@@ -69,3 +69,7 @@ O. Complete Card Screen
    o.1 click handler for inc/dec item
    o.2 click handler for remove item
    o.3 click handler for checkout
+P. Create Signin Screen
+   p.1 create sign in form
+   p.2 add email and password
+   p.3 add signin button
