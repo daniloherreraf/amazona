@@ -80,7 +80,10 @@ Q. Connect To MongoDB Database
    q.4 connect to mongodb database
 R. Seed Sample Data
    r.1 create product model
-   r.2 create user model
-   r.3 create seed route
-   r.4 use route in server.js
-   r.5 seed sample product
+   r.2 create seed route
+   r.3 use route in server.js
+   r.4 seed sample product
+S. Seed Sample Users
+   s.1 create user model
+   s.2 seed sample users
+   s.3 create users routes
