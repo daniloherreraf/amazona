@@ -78,3 +78,9 @@ Q. Connect To MongoDB Database
    q.2 install local mongodb database
    q.3 npm install mongoose
    q.4 connect to mongodb database
+R. Seed Sample Data
+   r.1 create product model
+   r.2 create user model
+   r.3 create seed route
+   r.4 use route in server.js
+   r.5 seed sample product

@@ -1,7 +1,7 @@
 const data = {
   products: [
     {
-      _id: "1",
+      //_id: "1",
       name: 'Nike SHIRT-A',
       slug: 'nike-slim-shirt',
       category: 'Shirts',
@@ -14,7 +14,7 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      _id: "2",
+      //_id: "2",
       name: 'Adidas SHIRT-B',
       slug: 'adidas-slim-shirt',
       category: 'Shirts',
@@ -28,7 +28,7 @@ const data = {
       description: 'high quality shirt',
     },
     {
-      _id: "3",
+      //_id: "3",
       name: 'Rebook SHOES',
       slug: 'rebook-shoes',
       category: 'Shoes',
@@ -42,7 +42,7 @@ const data = {
       description: 'high quality shoes',
     },
     {
-      _id: "4",
+      //_id: "4",
       name: 'Adidas SHOES',
       slug: 'adidas-shoes',
       category: 'Shoes',
