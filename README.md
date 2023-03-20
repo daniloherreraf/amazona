@@ -99,3 +99,7 @@ V. Create Shipping Screen
    v.1 create form inputs
    v.2 handle save shipping address
    v.3 add checkout wizard bar
+W. Create Sign up Screen
+   w.1 create input form
+   w.2 handle submit
+   w.3 create backend api
