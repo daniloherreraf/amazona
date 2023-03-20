@@ -95,3 +95,7 @@ U. Complete Signin Screen
    u.1 handle submit action
    u.2 save token in store and local storage
    u.3 show user name in header
+V. Create Shipping Screen
+   v.1 create form inputs
+   v.2 handle save shipping address
+   v.3 add checkout wizard bar
