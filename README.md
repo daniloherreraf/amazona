@@ -103,3 +103,6 @@ W. Create Sign up Screen
    w.1 create input form
    w.2 handle submit
    w.3 create backend api
+X. Implement Select Payment method Screen
+   x.1 create input forms
+   x.2 handle submit
