@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
@@ -10,10 +10,26 @@ import { Store } from '../Store';
 import CheckoutSteps from '../Components/CheckoutSteps';
 
 export default function PlaceOrderScreen() {
+  const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
 
-  const placeOrderHandler = () =>{}
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
+  cart.itemsPrice = round2(
+    cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+  );
+  cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
+  cart.taxPrice = round2(0.15 * cart.itemsPrice);
+  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
+
+  const placeOrderHandler = () => {};
+
+  useEffect(() => {
+    if (!cart.paymentMethod) {
+      navigate('/payment');
+    }
+  }, [cart, navigate]);
+
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -78,7 +94,7 @@ export default function PlaceOrderScreen() {
             <Card.Body>
               <Card.Title>Order Summary</Card.Title>
               <ListGroup variant="flush">
-              <ListGroup.Item>
+                <ListGroup.Item>
                   <Row>
                     <Col>Items</Col>
                     <Col>${cart.itemsPrice.toFixed(2)}</Col>
@@ -92,7 +108,7 @@ export default function PlaceOrderScreen() {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Tax</Col>
+                    <Col>Tax 15%</Col>
                     <Col>${cart.taxPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
