@@ -135,6 +135,12 @@ Y. Create Place order Screen
    y.1 show cart items, payment and address
    y.2 handle place order action
    y.3 create order create api
+<hr/>
 Z. Implement Place Order Action
    z.1 handle place order action
    z.2 create order create api
+<hr/>
+AB. Create Order Screen
+   ab.1 create backend api for order/:id
+   ab.2 fetch order api in frontend
+   ab.3 show order information in 2 columns
