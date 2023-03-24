@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import CheckoutSteps from '../Components/CheckoutSteps';
-import{ Helmet} from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import CheckoutSteps from '../Components/CheckoutSteps';
 import { Store } from '../Store';
-import { useNavigate } from 'react-router-dom';
 
 export default function PaymentMethodScreen() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function PaymentMethodScreen() {
     e.preventDefault();
     ctxDispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethodName });
     localStorage.setItem('paymentMethod', paymentMethodName);
-    navigate("/placeorder")
+    navigate('/placeorder');
   };
   return (
     <div>
@@ -58,9 +58,7 @@ export default function PaymentMethodScreen() {
             />
           </div>
           <div className="mb-3">
-            <Button variant="primary" type="submit">
-              Continue
-            </Button>
+            <Button type="submit">Continue</Button>
           </div>
         </Form>
       </div>

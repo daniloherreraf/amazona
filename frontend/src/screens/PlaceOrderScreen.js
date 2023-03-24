@@ -1,16 +1,16 @@
+import Axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Helmet } from 'react-helmet-async';
+import { toast } from 'react-toastify';
+import { getError } from '../utils';
 import { Store } from '../Store';
 import CheckoutSteps from '../Components/CheckoutSteps';
-import { getError } from '../utils';
-import { toast } from 'react-toastify';
-import axios from 'axios';
 import LoadingBox from '../Components/LoadingBox';
 
 const reducer = (state, action) => {
@@ -32,10 +32,11 @@ export default function PlaceOrderScreen() {
   const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
   });
+
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
 
-  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.2345 => 123.23
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
@@ -46,7 +47,8 @@ export default function PlaceOrderScreen() {
   const placeOrderHandler = async () => {
     try {
       dispatch({ type: 'CREATE_REQUEST' });
-      const { data } = await axios.post(
+
+      const { data } = await Axios.post(
         '/api/orders',
         {
           orderItems: cart.cartItems,
@@ -67,9 +69,9 @@ export default function PlaceOrderScreen() {
       dispatch({ type: 'CREATE_SUCCESS' });
       localStorage.removeItem('cartItems');
       navigate(`/order/${data.order._id}`);
-    } catch (error) {
+    } catch (err) {
       dispatch({ type: 'CREATE_FAIL' });
-      toast.error(getError(error));
+      toast.error(getError(err));
     }
   };
 
@@ -93,8 +95,8 @@ export default function PlaceOrderScreen() {
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
                 <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-                <strong>Address:</strong> {cart.shippingAddress.address},{' '}
-                {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},{' '}
+                <strong>Address: </strong> {cart.shippingAddress.address},
+                {cart.shippingAddress.city}, {cart.shippingAddress.postalCode},
                 {cart.shippingAddress.country}
               </Card.Text>
               <Link to="/shipping">Edit</Link>
@@ -157,7 +159,7 @@ export default function PlaceOrderScreen() {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Tax 15%</Col>
+                    <Col>Tax</Col>
                     <Col>${cart.taxPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
