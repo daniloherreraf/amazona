@@ -155,7 +155,14 @@ AC. Pay order By PayPal
    ac.7 render paypal button
    ac.8 implement onApprove payment function
    ac.9 create pay order api in backend
+<hr/>
 AD. Display Order History
    ad.1 create order screen
    ad.2 create order history api
    ad.3 use api in the frontend
+<hr/>
+AE. Create Profile Screen
+   ae.1 get user info from context
+   ae.2 show user information
+   ae.3 create user update api
+   ae.4 update user info
