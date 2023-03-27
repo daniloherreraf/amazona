@@ -175,3 +175,7 @@ AF. Publish To Heroku
    af.5 create mongodb atlas database
    af.6 set database connection in heroku env variables
    af.7 commit and push
+<hr/>
+AG. Add Sidebar and Search Box
+   ag.1 add sidebar
+   ag.2 add search box
