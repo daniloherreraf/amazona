@@ -179,3 +179,8 @@ AF. Publish To Heroku
 AG. Add Sidebar and Search Box
    ag.1 add sidebar
    ag.2 add search box
+<hr/>
+AH. Create Search Screen
+   ah.1 show filters
+   ah.2 create api for searching products
+   ah.3 display results
