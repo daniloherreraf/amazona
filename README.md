@@ -166,3 +166,12 @@ AE. Create Profile Screen
    ae.2 show user information
    ae.3 create user update api
    ae.4 update user info
+<hr/>
+AF. Publish To Heroku
+   af.1 create and config node project
+   af.2 serve build folder in frontend folder
+   af.3 create heroku account
+   af.4 connect it to github
+   af.5 create mongodb atlas database
+   af.6 set database connection in heroku env variables
+   af.7 commit and push
