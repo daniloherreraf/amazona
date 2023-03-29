@@ -184,3 +184,8 @@ AH. Create Search Screen
    ah.1 show filters
    ah.2 create api for searching products
    ah.3 display results
+<hr/>
+AI. Create Admin Menu
+   ai.1 define protected route component
+   ai.2 define admin route component
+   ai.3 add menu for admin in header
