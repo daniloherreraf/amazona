@@ -189,3 +189,7 @@ AI. Create Admin Menu
    ai.1 define protected route component
    ai.2 define admin route component
    ai.3 add menu for admin in header
+<hr/>
+AJ. Create DashboardScreen
+   aj.1 npm install react-google-charts
+   aj.2 get user info from context
