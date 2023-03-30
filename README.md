@@ -193,3 +193,5 @@ AI. Create Admin Menu
 AJ. Create DashboardScreen
    aj.1 npm install react-google-charts
    aj.2 get user info from context
+<hr/>
+AK. Create ProductListScreen
