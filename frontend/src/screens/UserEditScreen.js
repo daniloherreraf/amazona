@@ -34,7 +34,7 @@ export default function UserEditScreen() {
   const [{ loading, error, loadingUpdate }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
-  });
+  }); 
 
   const { state } = useContext(Store);
   const { userInfo } = state;
