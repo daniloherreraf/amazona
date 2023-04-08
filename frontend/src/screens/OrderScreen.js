@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import LoadingBox from '../Components/LoadingBox';
 import MessageBox from '../Components/MessageBox';
@@ -30,7 +31,14 @@ function reducer(state, action) {
       return { ...state, loadingPay: false };
     case 'PAY_RESET':
       return { ...state, loadingPay: false, successPay: false };
-
+    case 'DELIVER_REQUEST':
+      return { ...state, loadingDeliver: true };
+    case 'DELIVER_SUCCESS':
+      return { ...state, loadingDeliver: false, successDeliver: true };
+    case 'DELIVER-FAIL':
+      return { ...state, loadingDeliver: false };
+    case 'DELIVER_RESET':
+      return { ...state, loadingDeliver: false, successDeliver: false };
     default:
       return state;
   }
@@ -50,7 +58,8 @@ export default function OrderScreen() {
       order,
       successPay,
       loadingPay,
-     
+      loadingDeliver,
+      successDeliver,
     },
     dispatch,
   ] = useReducer(reducer, {
@@ -119,13 +128,16 @@ export default function OrderScreen() {
     if (
       !order._id ||
       successPay ||
+      successDeliver ||
       (order._id && order._id !== orderId)
     ) {
       fetchOrder();
       if (successPay) {
         dispatch({ type: 'PAY_RESET' });
       }
-     
+      if (successDeliver) {
+        dispatch({ type: 'DELIVER_RESET' });
+      }
     } else {
       const loadPaypalScript = async () => {
         const { data: clientId } = await axios.get('/api/keys/paypal', {
@@ -149,10 +161,26 @@ export default function OrderScreen() {
     navigate,
     paypalDispatch,
     successPay,
-  
+    successDeliver,
   ]);
 
- 
+  const deliverOrderHandler = async () => {
+    try {
+      dispatch({ type: 'DELIVER_REQUEST' });
+      const { data } = await axios.put(
+        `/api/orders/${order._id}/deliver`,
+        {},
+        {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+      dispatch({ type: 'DELIVER_SUCCESS', payload: data });
+      toast.success('Order is delivered');
+    } catch (error) {
+      toast.error(getError(error));
+      dispatch({ type: 'DELIVER_FAIL' });
+    }
+  };
 
   return loading ? (
     <LoadingBox></LoadingBox>
@@ -284,6 +312,16 @@ export default function OrderScreen() {
                       </div>
                     )}
                     {loadingPay && <LoadingBox></LoadingBox>}
+                  </ListGroup.Item>
+                )}
+                {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                  <ListGroup.Item>
+                    {loadingDeliver && <LoadingBox></LoadingBox>}
+                    <div>
+                      <Button type="button" onClick={deliverOrderHandler}>
+                        Deliver Order
+                      </Button>
+                    </div>
                   </ListGroup.Item>
                 )}
               </ListGroup>
